@@ -4,6 +4,7 @@ public class LinkedList<T>
 {
     private Node _first;
     private Node _last;
+    private int _count;
 
     private class Node
     {
@@ -25,6 +26,7 @@ public class LinkedList<T>
             _last._next = node;
             _last = node;
         }
+        _count++;
     }
 
     public void AddFirst(T item)
@@ -37,6 +39,7 @@ public class LinkedList<T>
             node._next = _first;
             _first = node;
         }
+        _count++;
     }
 
     public int IndexOf(T item)
@@ -61,14 +64,14 @@ public class LinkedList<T>
             throw new InvalidOperationException();
 
         if (_first == _last)
-        {
             _first = _last = null;
-            return;
+        else
+        {
+            var secondNode = _first._next;
+            _first._next = null;
+            _first = secondNode;
         }
-
-        var secondNode = _first._next;
-        _first._next = null;
-        _first = secondNode;
+        _count--;
     }
 
 
@@ -78,15 +81,17 @@ public class LinkedList<T>
             throw new InvalidOperationException();
 
         if (_first == _last)
-        {
             _first = _last = null;
-            return;
+        else
+        {
+            var previousNode = GetPrevious(_last);
+            previousNode._next = null;
+            _last = previousNode;
         }
-
-        var previousNode = GetPrevious(_last);
-        previousNode._next = null;
-        _last = previousNode;
+        _count--;
     }
+
+    public int Count() => _count;
 
     private bool IsHeadNull() => _first is null;
     private Node GetPrevious(Node node)
