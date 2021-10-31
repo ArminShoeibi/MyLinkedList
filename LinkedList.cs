@@ -53,7 +53,7 @@ public class LinkedList<T>
         return -1;
     }
 
-    public bool Contains(T item) => IndexOf(item) != 1;
+    public bool Contains(T item) => IndexOf(item) != -1;
 
     public void RemoveFirst()
     {
