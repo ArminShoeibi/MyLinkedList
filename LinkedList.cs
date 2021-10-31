@@ -74,6 +74,9 @@ public class LinkedList<T>
 
     public void RemoveLast()
     {
+        if (IsHeadNull())
+            throw new InvalidOperationException();
+
         var previousNode = GetPrevious(_last);
         previousNode._next = null;
         _last = previousNode;
