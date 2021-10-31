@@ -13,5 +13,11 @@ Console.WriteLine($"Contains 10? {linkedList.Contains(10)}");
 linkedList.RemoveFirst();
 Console.WriteLine($"Contains 10? {linkedList.Contains(10)}");
 
+var myLinkedListAsArray = linkedList.ToArray();
+foreach (var item in myLinkedListAsArray)
+{
+    Console.WriteLine(item);
+}
+
 Console.WriteLine();
 

@@ -74,7 +74,6 @@ public class LinkedList<T>
         _count--;
     }
 
-
     public void RemoveLast()
     {
         if (IsHeadNull())
@@ -92,6 +91,18 @@ public class LinkedList<T>
     }
 
     public int Count() => _count;
+    public T[] ToArray()
+    {
+        T[] array = new T[_count];
+        var current = _first;
+        var index = 0;
+        while (current is not null)
+        {
+            array[index++] = current._value;
+            current = current._next;
+        }
+        return array;
+    }
 
     private bool IsHeadNull() => _first is null;
     private Node GetPrevious(Node node)
