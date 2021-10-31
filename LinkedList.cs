@@ -53,9 +53,22 @@ public class LinkedList<T>
         return -1;
     }
 
-    public bool Contains(T item)
+    public bool Contains(T item) => IndexOf(item) != 1;
+
+    public void RemoveFirst()
     {
-        return IndexOf(item) != 1;
+        if (IsHeadNull())
+            throw new InvalidOperationException();
+
+        if (_first == _last)
+        {
+            _first = _last = null;
+            return;
+        }
+
+        var secondNode = _first._next;
+        _first._next = null;
+        _first = secondNode;
     }
 
     private bool IsHeadNull() => _first is null;
