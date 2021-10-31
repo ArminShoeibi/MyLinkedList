@@ -43,7 +43,7 @@ public class LinkedList<T>
     {
         int index = 0;
         var current = _first;
-        while (current != null)
+        while (current is not null)
         {
             if (EqualityComparer<T>.Default.Equals(current._value, item))
                 return index;
@@ -71,5 +71,25 @@ public class LinkedList<T>
         _first = secondNode;
     }
 
+
+    public void RemoveLast()
+    {
+        var previousNode = GetPrevious(_last);
+        previousNode._next = null;
+        _last = previousNode;
+    }
+
     private bool IsHeadNull() => _first is null;
+    private Node GetPrevious(Node node)
+    {
+        var current = _first;
+        while (current is not null)
+        {
+            if (current._next == node)
+                return current;
+
+            current = current._next;
+        }
+        return null;
+    }
 }
