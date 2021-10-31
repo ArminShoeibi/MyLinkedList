@@ -77,6 +77,12 @@ public class LinkedList<T>
         if (IsHeadNull())
             throw new InvalidOperationException();
 
+        if (_first == _last)
+        {
+            _first = _last = null;
+            return;
+        }
+
         var previousNode = GetPrevious(_last);
         previousNode._next = null;
         _last = previousNode;
